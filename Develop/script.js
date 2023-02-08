@@ -19,7 +19,10 @@ generateBtn.addEventListener("click", writePassword);
 
 
 // click button to start sequence for generating pw
-
+if (confirm("Would you like to generate a password?", "8-128") == true) {
+  passwordLength = prompt("Between 8 and 128 characters, how many long would you like the password to be?");
+  passwordLengthNum = parseInt(passwordLength);
+} 
 // else {
 //   return
 // }
