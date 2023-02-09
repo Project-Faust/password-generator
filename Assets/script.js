@@ -5,9 +5,9 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  
+
   passwordText.value = password;
-  
+
 }
 
 // Add event listener to generate button
@@ -27,13 +27,13 @@ if (confirm("Would you like to generate a password?") == true) {
   // parseInt changes string to num, stored in passwordLengthNum
   passwordLengthNum = parseInt(passwordLength);
   // Y/N for password to contain uppercase letters
-  useUpper = prompt("Do you want your password to include UPPERCASE LETTERS?")
-    // Y/N for password to contain lowercase letters
-  useLower = prompt("Do you want your password to include lowercase letters?")
-    // Y/N for password to contain special characters
-  useSpecial = prompt("Do you want your password to include special characters?")
-    // Y/N for password to contain numbers
-  useNumber = prompt("Do you want your password to include numbers?")
+  useUpper = confirm("Do you want your password to include UPPERCASE LETTERS?")
+  // Y/N for password to contain lowercase letters
+  useLower = confirm("Do you want your password to include lowercase letters?")
+  // Y/N for password to contain special characters
+  useSpecial = confirm("Do you want your password to include special characters?")
+  // Y/N for password to contain numbers
+  useNumber = confirm("Do you want your password to include numbers?")
 }
 
 console.log(passwordLengthNum);
@@ -58,8 +58,28 @@ function randomNumber() {
   [Math.floor(Math.random(characterNumber.length))]
 };
 
+// array that stores conditions for pw creation
+const passwordConditions = []
+
+// function to determine conditionals for pw creation
+// function passwordConditions() {
+//   if (useUpper == true) {
+//     randomUpper();
+//   }
+//   if (useLower == true) {
+//     randomLower();
+//   }
+//   if (useSpecial == true) {
+//     randomSpecial();
+//   }
+//   if (useNumber == true) {
+//     randomNumber();
+//   }
+// };
+
 // for loop to index array(s) for passwordLengthNum
 function generatePassword() {
-  for (i = 0; i < passwordLengthNum++; i++) {
-  }
+
 };
+
+// writePassword();
