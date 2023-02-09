@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword.toString();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -36,6 +36,10 @@ if (createPassword == true) {
   useSpecial = confirm("Do you want your password to include special characters?");
   // Y/N for password to contain numbers
   useNumber = confirm("Do you want your password to include numbers?");
+} 
+// stop user input and alert
+else {
+  alert("Maybe another time.");
 }
 
 // show T/F do you want to generate a password
@@ -88,7 +92,7 @@ function generatePassword() {
     }
     if (useLower == true) {
       randomLower();
-      charLower
+      charLower;
     }
     if (useSpecial == true) {
       randomSpecial();
@@ -101,6 +105,7 @@ function generatePassword() {
   }
 };
 
+// call writePassword
 writePassword();
 
 // are randomChar functions working
@@ -109,4 +114,5 @@ console.log(charLower);
 console.log(charSpecial);
 console.log(charNumber);
 
-// console.log(generatePassword);
+// is writePassword working
+console.log(writePassword());
