@@ -14,72 +14,99 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 // arrays containing characters that can compose a password
-const charactersUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-const charactersLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const charactersSpecial = ["!", "@", "#", "$", "%", "^", "*"];
-const characterNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var charactersUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var charactersLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var charactersSpecial = ["!", "@", "#", "$", "%", "^", "*"];
+var charactersNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
+// declare variable to contain T/F for gen pw
+var createPassword = confirm("Would you like to generate a password?");
 
-// click button to start sequence for generating pw
-if (confirm("Would you like to generate a password?") == true) {
+// prompt to start sequence for generating pw
+if (createPassword == true) {
   // prompt for length, in characters, of pw to be generated, stored in passwordLength
   passwordLength = prompt("Between 8 and 128 characters, how many long would you like the password to be?", "8-128");
   // parseInt changes string to num, stored in passwordLengthNum
   passwordLengthNum = parseInt(passwordLength);
   // Y/N for password to contain uppercase letters
-  useUpper = confirm("Do you want your password to include UPPERCASE LETTERS?")
+  useUpper = confirm("Do you want your password to include UPPERCASE LETTERS?");
   // Y/N for password to contain lowercase letters
-  useLower = confirm("Do you want your password to include lowercase letters?")
+  useLower = confirm("Do you want your password to include lowercase letters?");
   // Y/N for password to contain special characters
-  useSpecial = confirm("Do you want your password to include special characters?")
+  useSpecial = confirm("Do you want your password to include special characters?");
   // Y/N for password to contain numbers
-  useNumber = confirm("Do you want your password to include numbers?")
+  useNumber = confirm("Do you want your password to include numbers?");
 }
 
+// show T/F do you want to generate a password
+console.log(createPassword);
+// show num for passwordLengthNum
 console.log(passwordLengthNum);
+// show T/F pw contain uppercase
+console.log(useUpper);
+// show T/F pw contain lowercase
+console.log(useLower);
+// show T/F pw contain special
+console.log(useSpecial);
+// show T/F pw contain number
+console.log(useNumber);
+
+// declare variables to push into password
+var charUpper;
+var charLower;
+var charSpecial;
+var charNumber;
 
 // get random uppercase letter
 function randomUpper() {
-  [Math.floor(Math.random(charactersUpper.length))]
+  charUpper = charactersUpper[Math.floor(Math.random() * charactersUpper.length)]
 };
 
 // get random lowercase letter
 function randomLower() {
-  [Math.floor(Math.random(charactersLower.length))]
-}
+  charLower = charactersLower[Math.floor(Math.random() * charactersLower.length)]
+};
 
 // get random special character
 function randomSpecial() {
-  [Math.floor(Math.random(charactersSpecial.length))]
+  charSpecial = charactersSpecial[Math.floor(Math.random() * charactersSpecial.length)]
 };
 
 // get random number
 function randomNumber() {
-  [Math.floor(Math.random(characterNumber.length))]
+  charNumber = charactersNumber[Math.floor(Math.random() * charactersNumber.length)]
 };
 
-// array that stores conditions for pw creation
-const passwordConditions = []
 
-// function to determine conditionals for pw creation
-// function passwordConditions() {
-//   if (useUpper == true) {
-//     randomUpper();
-//   }
-//   if (useLower == true) {
-//     randomLower();
-//   }
-//   if (useSpecial == true) {
-//     randomSpecial();
-//   }
-//   if (useNumber == true) {
-//     randomNumber();
-//   }
-// };
-
-// for loop to index array(s) for passwordLengthNum
+// create funtion generatePassword
 function generatePassword() {
-
+  // for loop to index array(s) for passwordLengthNum and push into password
+  for (i = 0; i < (passwordLengthNum + 1); i++) {
+    if (useUpper == true) {
+      randomUpper();
+      charUpper;
+    }
+    if (useLower == true) {
+      randomLower();
+      charLower
+    }
+    if (useSpecial == true) {
+      randomSpecial();
+      charSpecial;
+    }
+    if (useNumber == true) {
+      randomNumber();
+      charNumber;
+    }
+  }
 };
 
-// writePassword();
+writePassword();
+
+// are randomChar functions working
+console.log(charUpper);
+console.log(charLower);
+console.log(charSpecial);
+console.log(charNumber);
+
+// console.log(generatePassword);
