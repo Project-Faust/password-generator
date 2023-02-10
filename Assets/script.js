@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword.toString();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -18,6 +18,9 @@ var charactersUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L
 var charactersLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var charactersSpecial = ["!", "@", "#", "$", "%", "^", "*"];
 var charactersNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+// declare empty master array that will contain characters for randomized password based on user choice
+passwordChoice = [];
 
 // declare variable to contain T/F for gen pw
 var createPassword = confirm("Would you like to generate a password?");
@@ -36,83 +39,71 @@ if (createPassword == true) {
   useSpecial = confirm("Do you want your password to include special characters?");
   // Y/N for password to contain numbers
   useNumber = confirm("Do you want your password to include numbers?");
-} 
+}
+// ensure user input whole number between 8 and 128
 // stop user input and alert
 else {
   alert("Maybe another time.");
 }
 
-// show T/F do you want to generate a password
-console.log(createPassword);
-// show num for passwordLengthNum
-console.log(passwordLengthNum);
-// show T/F pw contain uppercase
-console.log(useUpper);
-// show T/F pw contain lowercase
-console.log(useLower);
-// show T/F pw contain special
-console.log(useSpecial);
-// show T/F pw contain number
-console.log(useNumber);
+// // declare variables to push into password
+// var charUpper;
+// var charLower;
+// var charSpecial;
+// var charNumber;
 
-// declare variables to push into password
-var charUpper;
-var charLower;
-var charSpecial;
-var charNumber;
-
-// get random uppercase letter
-function randomUpper() {
-  charUpper = charactersUpper[Math.floor(Math.random() * charactersUpper.length)]
+// push character type arrays into master array depending on user choice
+function characterChoice() {
+if (useUpper == true) {
+  for (let i = 0; i < charactersUpper; i++)
+  passwordChoice.push(charactersUpper[i]);
+};
+if (useLower == true) {
+  for (let i = 0; i < charactersLower; i++)
+  passwordChoice.push(charactersLower[i]);
+};
+if (useSpecial == true) {
+  for (let i = 0; i < charactersSpecial; i++)
+  passwordChoice.push(charactersSpecial[i]);
+};
+if (useNumber == true) {
+  for (let i = 0; i < charactersNumber; i++)
+  passwordChoice.push(charactersNumber[i]);
+};
 };
 
-// get random lowercase letter
-function randomLower() {
-  charLower = charactersLower[Math.floor(Math.random() * charactersLower.length)]
-};
-
-// get random special character
-function randomSpecial() {
-  charSpecial = charactersSpecial[Math.floor(Math.random() * charactersSpecial.length)]
-};
-
-// get random number
-function randomNumber() {
-  charNumber = charactersNumber[Math.floor(Math.random() * charactersNumber.length)]
-};
-
+characterChoice();
+console.log(passwordChoice);
 
 // create funtion generatePassword
 function generatePassword() {
-  // for loop to index array(s) for passwordLengthNum and push into password
-  for (i = 0; i < (passwordLengthNum + 1); i++) {
-    if (useUpper == true) {
-      randomUpper();
-      charUpper;
-    }
-    if (useLower == true) {
-      randomLower();
-      charLower;
-    }
-    if (useSpecial == true) {
-      randomSpecial();
-      charSpecial;
-    }
-    if (useNumber == true) {
-      randomNumber();
-      charNumber;
-    }
-  }
+  var passwordString = "";
+  characterChoice();
+  // for loop to index master array for passwordLengthNum and push into password
+  for (let i = 0; i < (passwordLengthNum + 1); i++) {
+    passwordChoice[Math.floor(Math.random() * passwordChoice.length)];
+    passwordString = passwordChoice.value;
+    return passwordString;
+  };
 };
 
-// call writePassword
-writePassword();
 
-// are randomChar functions working
-console.log(charUpper);
-console.log(charLower);
-console.log(charSpecial);
-console.log(charNumber);
+// // get random uppercase letter
+// function randomUpper() {
+//   charUpper = charactersUpper[Math.floor(Math.random() * charactersUpper.length)]
+// };
 
-// is writePassword working
-console.log(writePassword());
+// // get random lowercase letter
+// function randomLower() {
+//   charLower = charactersLower[Math.floor(Math.random() * charactersLower.length)]
+// };
+
+// // get random special character
+// function randomSpecial() {
+//   charSpecial = charactersSpecial[Math.floor(Math.random() * charactersSpecial.length)]
+// };
+
+// // get random number
+// function randomNumber() {
+//   charNumber = charactersNumber[Math.floor(Math.random() * charactersNumber.length)]
+// };
