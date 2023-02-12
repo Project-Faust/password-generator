@@ -13,51 +13,35 @@ generateBtn.addEventListener("click", writePassword);
 
 // arrays containing characters that can compose a password
 var charactersUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var charactersLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var charactersSpecial = ["!", "@", "#", "$", "%", "^", "*"];
+var charactersLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var charactersSpecial = [, '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
 var charactersNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 // declare empty master array that will contain characters for randomized password based on user choice
 var passwordChoice = [];
 
-// push character type arrays into master array depending on user choice
-function characterChoice() {
-  if (useUpper == true) {
-    for (i = 0; i < charactersUpper.length; i++)
-      passwordChoice.push(charactersUpper[i]);
-  };
-  if (useLower == true) {
-    for (i = 0; i < charactersLower.length; i++)
-      passwordChoice.push(charactersLower[i]);
-  };
-  if (useSpecial == true) {
-    for (i = 0; i < charactersSpecial.length; i++)
-      passwordChoice.push(charactersSpecial[i]);
-  };
-  if (useNumber == true) {
-    for (i = 0; i < charactersNumber.length; i++)
-      passwordChoice.push(charactersNumber[i]);
-  };
-};
+// declare variable to contain T/F for gen pw
+var createPassword = confirm("Would you like to generate a password?");
 
 // create funtion generatePassword
 function generatePassword() {
   characterChoice();
   // for loop to index master array for passwordLengthNum and push into password
-  {
-    for (let i = 0; i < (passwordLengthNum.length + 1); i++) {
-      password.push(passwordChoice[Math.floor(Math.random() * passwordChoice.length)]);
-    };
+  for (let i = 0; i < (passwordLengthNum.length + 1); i++) {
+    password.push(passwordChoice[Math.floor(Math.random() * passwordChoice.length)]);
   };
+  password.toString();
 };
 
-// declare passwordString
-// var passwordString = [];
+// ensure users wants to create a password
+if (createPassword == true) {
+  passwordParameters();
+  passwordChoiceValidation();
+} else {
+  alert("Maybe next time. Refresh the browser and try again.");
+};
 
-
-// declare variable to contain T/F for gen pw
-var createPassword = confirm("Would you like to generate a password?");
-
+// determine qualifications for password
 function passwordParameters() {
   // prompt for length, in characters, of pw to be generated, stored in passwordLength
   passwordLength = prompt("Between 8 and 128 characters, how many long would you like the password to be?", "8-128");
@@ -78,6 +62,7 @@ function passwordParameters() {
   };
 };
 
+// ensure user selected at least one character type
 function passwordChoiceValidation() {
   if (!useUpper && !useLower && !useSpecial && !useNumber) {
     alert("You must select at least one type of character. Refresh the page and try again.");
@@ -87,10 +72,22 @@ function passwordChoiceValidation() {
   }
 }
 
-// ensure users wants to create a password
-if (createPassword == true) {
-  passwordParameters();
-  passwordChoiceValidation();
-} else {
-  alert("Maybe next time. Refresh the browser and try again.");
+// push character type arrays into master array depending on user choice
+function characterChoice() {
+  if (useUpper == true) {
+    for (i = 0; i < charactersUpper.length; i++)
+      passwordChoice.push(charactersUpper[i]);
+  };
+  if (useLower == true) {
+    for (i = 0; i < charactersLower.length; i++)
+      passwordChoice.push(charactersLower[i]);
+  };
+  if (useSpecial == true) {
+    for (i = 0; i < charactersSpecial.length; i++)
+      passwordChoice.push(charactersSpecial[i]);
+  };
+  if (useNumber == true) {
+    for (i = 0; i < charactersNumber.length; i++)
+      passwordChoice.push(charactersNumber[i]);
+  };
 };
