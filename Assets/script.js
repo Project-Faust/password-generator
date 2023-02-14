@@ -14,7 +14,7 @@ generateBtn.addEventListener("click", writePassword);
 // arrays containing characters that can compose a password
 var charactersUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var charactersLower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var charactersSpecial = [, '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
+var charactersSpecial = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
 var charactersNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 // declare empty master array that will contain characters for randomized password based on user choice
@@ -26,11 +26,13 @@ var createPassword = confirm("Would you like to generate a password?");
 // create funtion generatePassword
 function generatePassword() {
   characterChoice();
+  var sample = [];
   // for loop to index master array for passwordLengthNum and push into password
-  for (let i = 0; i < (passwordLengthNum.length + 1); i++) {
-    password.push(passwordChoice[Math.floor(Math.random() * passwordChoice.length)]);
+  for (let i = 0; i <= passwordLengthNum; i++) {
+    sample.push(passwordChoice[Math.floor(Math.random() * passwordChoice.length)]);
   };
-  password.toString();
+  return sample.join('');
+  // password.toString();
 };
 
 // ensure users wants to create a password
@@ -44,11 +46,11 @@ if (createPassword == true) {
 // determine qualifications for password
 function passwordParameters() {
   // prompt for length, in characters, of pw to be generated, stored in passwordLength
-  passwordLength = prompt("Between 8 and 128 characters, how many long would you like the password to be?", "8-128");
+  passwordLength = prompt("Between 8 and 128 characters, how many long would you like the password to be? Any decimal or fractions will be rounded down to the nearest whole number.", "8-128");
   // parseInt changes string to num, stored in passwordLengthNum
-  passwordLengthNum = parseInt(passwordLength);
+  passwordLengthNum = Math.floor(parseInt(passwordLength));
   // ensure user inputs whole number between 8 and 128
-  if ((passwordLengthNum < 8) || (passwordLengthNum > 128) || ((passwordLengthNum % 1) != 0)) {
+  if ((passwordLengthNum < 8) || (passwordLengthNum > 128)) {
     alert("Please enter a whole number between 8 and 128. Refresh the page and try again.");
   } else {
     // Y/N for password to contain uppercase letters
